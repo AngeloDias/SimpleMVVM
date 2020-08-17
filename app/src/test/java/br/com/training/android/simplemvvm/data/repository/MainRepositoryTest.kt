@@ -5,7 +5,6 @@ import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Single
-import io.reactivex.observers.TestObserver
 import org.hamcrest.collection.IsCollectionWithSize
 import org.junit.Assert
 import org.junit.Before

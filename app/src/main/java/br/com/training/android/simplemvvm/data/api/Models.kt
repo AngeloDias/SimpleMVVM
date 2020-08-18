@@ -1,8 +1,8 @@
-package br.com.training.android.simplemvvm.data.model
+package br.com.training.android.simplemvvm.data.api
 
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class ApiUser(
     @SerializedName("id")
     val id: Int = 0,
     @SerializedName("name")

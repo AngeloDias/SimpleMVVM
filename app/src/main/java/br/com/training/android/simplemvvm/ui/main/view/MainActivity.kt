@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.training.android.simplemvvm.R
 import br.com.training.android.simplemvvm.data.api.ApiHelper
 import br.com.training.android.simplemvvm.data.api.ApiServiceImpl
-import br.com.training.android.simplemvvm.data.model.User
+import br.com.training.android.simplemvvm.data.domain.User
 import br.com.training.android.simplemvvm.ui.base.ViewModelFactory
 import br.com.training.android.simplemvvm.ui.main.adapter.MainAdapter
 import br.com.training.android.simplemvvm.ui.main.viewmodel.MainViewModel
@@ -19,7 +19,6 @@ import br.com.training.android.simplemvvm.utils.Status
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var mainViewModel: MainViewModel
     private lateinit var adapter: MainAdapter
 

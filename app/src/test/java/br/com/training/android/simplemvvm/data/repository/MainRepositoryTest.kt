@@ -1,6 +1,6 @@
 package br.com.training.android.simplemvvm.data.repository
 
-import br.com.training.android.simplemvvm.data.model.User
+import br.com.training.android.simplemvvm.data.domain.User
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.mockk

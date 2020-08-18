@@ -1,6 +1,5 @@
 package br.com.training.android.simplemvvm.data.api
 
-import br.com.training.android.simplemvvm.data.model.User
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import io.reactivex.Single
@@ -19,7 +18,7 @@ class ApiTest {
     fun apiServiceGetUsersTest() {
         val singleMockk = mockkClass(Single::class)
 
-        every { apiServiceImpl.getUsers() } returns singleMockk as Single<List<User>>
+        every { apiServiceImpl.getUsers() } returns singleMockk as Single<List<ApiUser>>
 
         Assert.assertNotNull(apiServiceImpl.getUsers())
 
@@ -32,7 +31,7 @@ class ApiTest {
         val apiHelperMockk = mockk<ApiHelper>()
         val singleMockk = mockkClass(Single::class)
 
-        every { apiHelperMockk.getUsers() } returns singleMockk as Single<List<User>>
+        every { apiHelperMockk.getUsers() } returns singleMockk as Single<List<ApiUser>>
 
         Assert.assertEquals(singleMockk, apiHelperMockk.getUsers())
 

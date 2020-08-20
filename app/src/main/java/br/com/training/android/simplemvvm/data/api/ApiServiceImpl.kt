@@ -1,10 +1,9 @@
 package br.com.training.android.simplemvvm.data.api
 
-import android.content.Context
 import com.rx2androidnetworking.Rx2AndroidNetworking
 import io.reactivex.Single
 
-class ApiServiceImpl : ApiService {
+internal class ApiServiceImpl: ApiService {
 
     override fun getUsers(): Single<List<ApiUser>> {
         return Rx2AndroidNetworking.get("https://5e510330f2c0d300147c034c.mockapi.io/users")
@@ -12,22 +11,31 @@ class ApiServiceImpl : ApiService {
             .getObjectListSingle(ApiUser::class.java)
     }
 
+    override fun getInstance(): ApiService {
+        return ApiServiceFactory.getInstance()
+    }
+
 }
 
-class ApiServiceFactory {
-    @Volatile
-    private var INSTANCE: ApiServiceImpl? = null
+private class ApiServiceFactory {
 
-    fun getInstance(context: Context): ApiService {
-        synchronized(this) {
-            var instance = INSTANCE as ApiService
+    companion object {
+        @Volatile
+        private var INSTANCE: ApiService? = null
 
-            if(instance == null) {
+        fun getInstance(): ApiService {
+            synchronized(this) {
+                var instance = INSTANCE as ApiService
+
+                if (instance == null) {
+                    instance = ApiServiceImpl()
+                }
+
+                INSTANCE = instance
+
+                return instance
             }
 
-            INSTANCE = instance as ApiServiceImpl
-
-            return instance
         }
 
     }

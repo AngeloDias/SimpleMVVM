@@ -6,4 +6,5 @@ interface ApiService {
 
     fun getUsers(): Single<List<ApiUser>>
 
+    fun getInstance(): ApiService
 }

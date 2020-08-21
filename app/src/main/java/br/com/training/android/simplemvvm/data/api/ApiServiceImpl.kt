@@ -25,7 +25,7 @@ private class ApiServiceFactory {
 
         fun getInstance(): ApiService {
             synchronized(this) {
-                var instance = INSTANCE as ApiService
+                var instance = INSTANCE
 
                 if (instance == null) {
                     instance = ApiServiceImpl()

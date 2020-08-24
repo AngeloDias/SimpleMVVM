@@ -3,19 +3,16 @@ package br.com.training.android.simplemvvm.ui.main.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import br.com.training.android.simplemvvm.data.api.ApiUser
+import br.com.training.android.simplemvvm.data.domain.User
 import br.com.training.android.simplemvvm.data.repository.MainRepositoryImpl
 import br.com.training.android.simplemvvm.utils.Resource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-/**
- * TODO refactor to exclude User direct use from the ViewModel
- * */
 class MainViewModel(private val mainRepositoryImpl: MainRepositoryImpl) : ViewModel() {
 
-    private val users = MutableLiveData<Resource<List<ApiUser>>>()
+    private val users = MutableLiveData<Resource<List<User>>>()
     private val compositeDisposable = CompositeDisposable()
 
     init {
@@ -47,7 +44,7 @@ class MainViewModel(private val mainRepositoryImpl: MainRepositoryImpl) : ViewMo
         compositeDisposable.dispose()
     }
 
-    fun getUsers(): LiveData<Resource<List<ApiUser>>> {
+    fun getUsers(): LiveData<Resource<List<User>>> {
         return users
     }
 

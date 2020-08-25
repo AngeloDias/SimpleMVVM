@@ -9,14 +9,33 @@ import br.com.training.android.simplemvvm.utils.Resource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
 
 class MainViewModel(private val mainRepositoryImpl: MainRepositoryImpl) : ViewModel() {
+
+    //region Using RxAndroid
 
     private val users = MutableLiveData<Resource<List<User>>>()
     private val compositeDisposable = CompositeDisposable()
 
+    //endregion
+
+    //region Using coroutines
+
+    private lateinit var viewModelJob: Job
+    private lateinit var viewModelScope: CoroutineScope
+
+    //endregion
+
     init {
         fetchUsers()
+    }
+
+    private fun fetchUsersUsingCoroutines() {
+        viewModelJob = SupervisorJob()
+        viewModelScope = CoroutineScope(viewModelJob + Dispatchers.IO)
+
+        viewModelScope.launch {  }
     }
 
     private fun fetchUsers() {
@@ -42,6 +61,7 @@ class MainViewModel(private val mainRepositoryImpl: MainRepositoryImpl) : ViewMo
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
+        viewModelJob.cancel()
     }
 
     fun getUsers(): LiveData<Resource<List<User>>> {

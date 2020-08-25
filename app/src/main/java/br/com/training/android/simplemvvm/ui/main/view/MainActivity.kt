@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewModel() {
         mainViewModel = ViewModelProviders.of(
             this,
-            ViewModelFactory(ApiHelper(ApiServiceImpl()))
+            ViewModelFactory(ApiHelper(ApiServiceImpl()), this)
         ).get(MainViewModel::class.java)
     }
 
